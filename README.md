@@ -1,6 +1,18 @@
 # AmazonFC-Hazmat-Tracker
 A Script created in python to automatically check the attendance and send the results via slack webhook. 
 
+# Code Summary:
+Main Loop:
+- **theHarvester** | Python: Pulls only the relevant data from the excell sheet that the team needs to recertify an associate and paste it into specific columns in the excel
+- **HazmatCocTracker** | VBA: Module that is our runner to fire all the python and vba scripts in order.
+- **DoIt** | VBA: A module that checks the current attendance onsite and will pull the information from that database. 
+- **theChef_2** | Python: Parses the data on the spreadsheet such as the associates name, login, location, and Hazmat/Code of Conduct Compliance level and seperates them in an excel sheet tab by dept name. 
+The information then gets organized on a markdown table and the payload gets sent through slack.
+
+Automation:
+- **ScheduleRun** | Python: Schedules the time intervals when to fire the code again. 
+- **RunHazmat** | Python: Fires the main loop and calls the appropraite classes and VBA. 
+
 The solution also has a VBA component which currently authenticates via midway key. That wasn't included since that will contain sensitive information. 
 # Workflow Summary:
 1. Pulling the .csv containing the information of certificate expiration. 
