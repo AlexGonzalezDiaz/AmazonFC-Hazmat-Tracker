@@ -1,0 +1,35 @@
+Sub PullLists()
+    On Error GoTo ErrorHandler
+    Dim strPath As String
+    Dim strExeName, harvesterExecutable, chefExecutable As String
+    Dim PythonExePath As String, PythonScriptPath As String
+    Dim pythonShell As Object
+    
+    ' Specify the path to your executable files
+    harvesterExecutable = "C:\Users\login\Desktop\Hazmat_Tracker\dist\Harvester.exe"
+    chefExecutable = "C:\Users\login\Desktop\Hazmat_Tracker\dist\theChef.exe"
+    
+    ' Start Harvester.exe and wait for it to finish
+    Call ShellAndWait(harvesterExecutable, vbNormalFocus)
+    
+    Call DoIT
+
+    ' Start theChef.exe and wait for it to finish
+    Call ShellAndWait(chefExecutable, vbNormalFocus)
+
+ErrorHandler:
+    MsgBox "An error occurred in rounded corners. Please check your code.", vbCritical, "Error"
+End Sub
+
+' Function to start a shell command and wait for it to finish
+Sub ShellAndWait(ByVal command As String, ByVal windowStyle As VbAppWinStyle)
+    Dim objShell As Object
+    Dim objExec As Object
+    
+    ' Create a shell object
+    Set objShell = CreateObject("WScript.Shell")
+
+    
+    ' Start the shell command
+    objShell.Run command, windowStyle, True
+End Sub

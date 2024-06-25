@@ -1,0 +1,31 @@
+'******************************
+'Sensitive authentication code goes here
+'******************************
+Sub GetFCLM_Managers()
+
+Call MidwayLogin
+Call EmberU
+Call FCLMPull(ThisWorkbook.Sheets("Roster"), ThisWorkbook.Sheets("Home").Cells(1, 1).Value, "ROSTER")
+
+'End If
+Call CheckForHead
+
+Application.StatusBar = False
+
+
+End Sub
+Sub DoIT()
+    ' Spells assigned to be the workbook to find logins
+    Dim ws1 As Worksheet
+    Set ws1 = ThisWorkbook.Sheets("Spells")
+    Dim cellValues As Variant
+    Dim allCellsEmpty As Boolean
+    Dim i As Integer
+    
+    
+    Call EmberU
+    Call GetFCLM_Attendance
+    Call Pretty
+    Application.StatusBar = False
+    Exit Sub
+End Sub
